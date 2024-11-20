@@ -52,3 +52,64 @@ Symfony, PHP için hazırlanmış daha karmaşık ve esnek bir frameworktür. Da
 - Eğer büyük bir proje yapacaksan, gelecekte genişlemesi gerekirse: **Symfony**.
 - Laravel daha çok bir Lego evi yapmak gibi, her şey hazır geliyor.
 - Symfony ise kendi Lego parçalarını seçip istediğin evi yapmak gibi, daha özgürsün ama biraz daha uğraşman gerekebilir.
+
+## --------------------------------------------------------------------------------------------------
+
+# Laravel Projesi Başlatma
+
+Laravel projesini başlatmak için aşağıdaki adımları takip edebilirsiniz.
+
+## Gerekli PHP Eklentileri
+Aşağıdaki PHP eklentilerinin aktif olması gereklidir:
+
+- **sqlite**
+- **pdo_sqlite**
+- **file_...** (ilgili dosya işlemleriyle ilgili bir eklenti)
+
+Eklentilerinizi kontrol etmek için `phpinfo()` veya `php -m` komutlarını kullanabilirsiniz.
+
+## Projeyi Çalıştırma
+
+1. **Laravel Projesini Başlat**  
+   ```bash
+   php artisan serve
+   ```
+
+2. **Node.js Bağımlılıklarını Yükle**  
+   Projenizde bir `package.json` dosyası bulunduğu için `npm install` çalıştırarak gerekli bağımlılıkları yükleyin:  
+   ```bash
+   npm install
+   ```
+
+---
+
+## Sqlite Hatası Aldık
+
+### Hata:
+Eğer aşağıdaki gibi bir SQLite hatasıyla karşılaşırsanız:
+
+```plaintext
+SQLSTATE[HY000]: General error: 1 no such table: sessions (Connection: sqlite, SQL: select * from "sessions" where "id" = nP0nQ4xISlb3C8o6KVpl86TUj7QplAi8G0QNw624 limit 1)
+```
+
+### Çözüm:
+
+1. **Veritabanı Tablolarını Oluştur**  
+   Eğer tablolar henüz oluşturulmamışsa, aşağıdaki komutu çalıştırın:  
+   ```bash
+   php artisan migrate
+   ```
+
+2. **Tabloları Yeniden Oluştur**  
+   Eğer tablolar mevcutsa ve sıfırlamak istiyorsanız:  
+   ```bash
+   php artisan migrate:fresh
+   ```
+
+---
+
+### Ekstra Notlar
+- `php artisan migrate` komutu, veritabanı tablolarını oluşturur veya eksik tabloları tamamlar.
+- `php artisan migrate:fresh` komutu, mevcut tabloları silerek sıfırdan oluşturur.
+
+Bu adımları izleyerek projeyi sorunsuz bir şekilde çalıştırabilirsiniz.
